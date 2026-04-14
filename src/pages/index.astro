@@ -1,0 +1,766 @@
+---
+import { getImage, Image } from "astro:assets";
+import Button from "../components/Button.astro";
+import underTheFold from "../styles/pages/home/home.scss?url";
+import splideCssUrl from "@splidejs/splide/css?url";
+import Layout from "../layout/Layout.astro";
+import Icon from "../components/Svg.astro";
+import SliderController from "../components/SliderController.astro";
+
+//===== Assets import =========//
+import PlatformLogo from "../assets/images/brandlogo.png";
+import Robert from "../assets/images/robert.png";
+import RobertM from "../assets/images/robert-M.png";
+import RobertL from "../assets/images/robert-L.png";
+import serviceOneImg from "../assets/images/service-1.jpg";
+import QuoteIcon from "../assets/images/quote.avif";
+import GoogleIcon from "../assets/images/google.avif";
+import FbIcon from "../assets/images/facebook.avif";
+
+const Robertwebp = await getImage({
+    src: Robert,
+    width: 450,
+    format: "webp",
+});
+const RobertMwebp = await getImage({
+    src: RobertM,
+    width: 640,
+    format: "webp",
+});
+const RobertLwebp = await getImage({
+    src: RobertL,
+    width: 1043,
+    format: "webp",
+});
+const Robertavif = await getImage({
+    src: Robert,
+    width: 450,
+    format: "avif",
+});
+const RobertMavif = await getImage({
+    src: RobertM,
+    width: 640,
+    format: "avif",
+});
+const RobertLavif = await getImage({
+    src: RobertL,
+    width: 1043,
+    format: "avif",
+});
+
+import {
+    stats,
+    services,
+    projects,
+    process,
+    testimonials,
+    faq,
+} from "../data/data.js";
+---
+
+<Layout>
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
+        <div class="hero__backdrop">
+            <picture>
+                <source
+                    media="(min-width: 768px)"
+                    srcset={RobertLavif.src}
+                    type="image/avif"
+                />
+                <source
+                    media="(min-width: 768px)"
+                    srcset={RobertLwebp.src}
+                    type="image/webp"
+                />
+                <source
+                    media="(min-width: 480px)"
+                    srcset={RobertMavif.src}
+                    type="image/avif"
+                />
+                <source
+                    media="(min-width: 480px)"
+                    srcset={RobertMwebp.src}
+                    type="image/webp"
+                />
+                <source srcset={Robertavif.src} type="image/avif" />
+                <source srcset={Robertwebp.src} type="image/webp" />
+
+                <img
+                    src={Robert.src}
+                    alt="Robert the lawyer"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="sync"
+                    width={Robert.width}
+                    class="hero__img"
+                />
+            </picture>
+        </div>
+        <div class="hero__wrapper container">
+            <div class="hero__info flex-column">
+                <div class="hero-trust flex-column flex-center-y">
+                    <div class="hero-badge">
+                        <div class="glass-card"></div>
+                        <span class="hero-badge__icon" aria-hidden="true">
+                            <Icon name="auction-fill" src="abovethefold" />
+                        </span>
+                        <div class="hero-badge__text">
+                            SRA Regulated: 01993456
+                        </div>
+                    </div>
+                    <div class="hero__review review-box flex-center-x">
+                        <div class="glass-card"></div>
+                        <div class="review-box__header rating-card">
+                            <div class="review-box__avatars rating-card__media">
+                                <Image src={PlatformLogo} alt="Brand logo" />
+                            </div>
+                            <div class="review-box__content rating-card__body">
+                                <div
+                                    class="review-box__rating rating-card__score"
+                                >
+                                    <div
+                                        class="review-box__stars rating-card__stars"
+                                        aria-hidden="true"
+                                    >
+                                        {
+                                            Array.from({ length: 5 }).map(
+                                                () => (
+                                                    <Icon
+                                                        className="rating-card__star"
+                                                        name="star-icon"
+                                                        src="abovethefold"
+                                                    />
+                                                ),
+                                            )
+                                        }
+                                    </div>
+                                    <span class="rating-card__value">5.0</span>
+                                </div>
+                                <div class="review-box__info rating-card__meta">
+                                    2K+ User review
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-box__description">
+                            Strategic legal guidance for your personal and
+                            business needs.
+                        </p>
+                    </div>
+                    <div class="hero-trust__cta">
+                        <Button type="primary" title="Start your case" />
+                    </div>
+                </div>
+                <div class="hero__content flex-column">
+                    <div class="hero-badge">
+                        <div class="glass-card"></div>
+                        <span class="hero-badge__icon" aria-hidden="true">
+                            <Icon name="auction-fill" src="abovethefold" />
+                        </span>
+                        <div class="hero-badge__text">
+                            SRA Regulated: 01993456
+                        </div>
+                    </div>
+
+                    <h1 class="hero__intro" id="hero-heading">
+                        Your Leagal solutions <span class="accent-color"
+                            >partner</span
+                        >
+                    </h1>
+                    <p class="hero__description">
+                        Expert legal guidance for your personal and business
+                        needs. Let's build your strongest case together.
+                    </p>
+                    <div class="hero__cta">
+                        <Button type="primary" title="Start your case" />
+                    </div>
+                </div>
+            </div>
+            <ul
+                class="hero__stats stats"
+                role="list"
+                aria-label="Key statistics"
+            >
+                {
+                    stats.map((item) => (
+                        <li class="stats__item">
+                            <div class="stats__header flex-center">
+                                <div class="stats__icon" aria-hidden="true">
+                                    <Icon name={item.icon} src="abovethefold" />
+                                </div>
+                                <div class="stats__value">
+                                    <span class="stats__number">
+                                        {item.value}
+                                    </span>
+                                    <span class="stats__suffix">
+                                        {item.suffix}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="stats__body">{item.description}</div>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-heading">
+        <div class="about__wrapper container">
+            <div class="about__intro flex-column flex-center-y">
+                <div class="badge">about me</div>
+                <h2 id="about-heading" class="about__heading">
+                    <span class="colored-text">Guidance</span> you can trust in difficult
+                    times
+                </h2>
+            </div>
+            <div class="about__details">
+                <p class="about__description">
+                    <strong
+                        >With 20 years of legal experience, I’m committed to
+                        helping individuals and families navigate the legal
+                        system with clarity and confidence.
+                    </strong>
+                    I offer honest advice, strong representation, and personal attention
+                    to every case — from consultation to resolution. Whether you're
+                    facing a legal challenge or need sound guidance, I’m here to stand
+                    by your side with integrity and focus.
+                </p>
+                <Button title="Get a free quote" type="primary" />
+            </div>
+        </div>
+    </section>
+    <section id="services" class="services" aria-labelledby="services-heading">
+        <div class="services__wrapper container">
+            <div class="services__header slide-up">
+                <div class="services__header-intro">
+                    <div class="badge">Practice area</div>
+                    <h2 id="sevices-heading" class="services__heading">
+                        Legal <span class="colored-text">services</span> you can trust
+                    </h2>
+                </div>
+                <div class="services__header-body">
+                    <div class="services__description">
+                        Robert works closely with clients, providing clear,
+                        practical legal solutions with trust and transparency.
+                    </div>
+                    <SliderController />
+                </div>
+            </div>
+            <div class="services__list services__list--mobile">
+                {
+                    services.map((item, index) => (
+                        <div class="services__item">
+                            <div class="services__media">
+                                <Image
+                                    src={item.thumbnail}
+                                    alt={item.title}
+                                    width={item.thumbnail.width}
+                                />
+                            </div>
+                            <div class="services__content">
+                                <h3 class="services__title">{item.title}</h3>
+                                <p class="services__description">
+                                    {item.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="splide slide-up">
+                <div class="splide__track">
+                    <div
+                        class="services__list services__list--desktop splide__list"
+                    >
+                        {
+                            services.map((item, index) => (
+                                <div class="services__item splide__slide">
+                                    <div class="services__media">
+                                        <Image
+                                            src={item.thumbnail}
+                                            alt={item.title}
+                                            width={item.thumbnail.width}
+                                        />
+                                    </div>
+                                    <div class="services__content">
+                                        <h3 class="services__title">
+                                            {item.title}
+                                        </h3>
+                                        <p class="services__description">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="services__cta slide-up">
+                <Button type="primary" title="Start your case" />
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="projects" aria-labelledby="projects-heading">
+        <div class="projects__wrapper container">
+            <div class="projects__content">
+                <div class="projects__intro">
+                    <div class="badge">My projects</div>
+                    <h2 id="projects-heading" class="projects__heading">
+                        Some of my legal <span class="colored-text">works</span>
+                    </h2>
+                </div>
+                <div class="projects__details">
+                    <p class="projects__description">
+                        Explore a selection of cases and legal matters we’ve
+                        successfully handled across different practice areas.
+                    </p>
+                    <Button title="See all works" type="primary" />
+                </div>
+            </div>
+            <div class="service__tile-list">
+                {
+                    projects.map((project) => {
+                        return (
+                            <article class="service-item">
+                                <div class="service-item__image-wrapper">
+                                    <Image
+                                        class="service-item__image"
+                                        alt={project.title}
+                                        src={project.thumbnail}
+                                    />
+                                </div>
+                                <div class="service-item__content">
+                                    <div class="service-item__header">
+                                        <h3 class="service-item__title">
+                                            {project.title}
+                                        </h3>
+                                        <span
+                                            class="service-item__icon"
+                                            aria-hidden="true"
+                                        >
+                                            <svg
+                                                width="24"
+                                                height="22"
+                                                viewBox="0 0 24 22"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path d="M23.9973 2.07298C24.0376 1.52216 23.6238 1.04297 23.073 1.00267L14.097 0.345886C13.5462 0.305583 13.067 0.719432 13.0267 1.27024C12.9864 1.82106 13.4002 2.30025 13.951 2.34055L21.9297 2.92436L21.3459 10.903C21.3056 11.4538 21.7194 11.933 22.2702 11.9733C22.8211 12.0136 23.3003 11.5998 23.3406 11.049L23.9973 2.07298ZM1 21L1.65362 21.7568L23.6536 2.75682L23 2L22.3464 1.24318L0.34638 20.2432L1 21Z" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <p class="service-item__description">
+                                        {project.description}
+                                    </p>
+                                </div>
+                            </article>
+                        );
+                    })
+                }
+            </div>
+            <div class="service__grid-list">
+                <div class="service-preview"></div>
+                {
+                    projects.map((project, index) => (
+                        <article
+                            class="service-item"
+                            data-image={project.thumbnail.src}
+                        >
+                            <h3 class="service-item__title">{project.title}</h3>
+                            <p class="service-item__description">
+                                {project.description}
+                            </p>
+                            <span class="service-item__icon" aria-hidden="true">
+                                <svg
+                                    width="24"
+                                    height="22"
+                                    viewBox="0 0 24 22"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M23.9973 2.07298C24.0376 1.52216 23.6238 1.04297 23.073 1.00267L14.097 0.345886C13.5462 0.305583 13.067 0.719432 13.0267 1.27024C12.9864 1.82106 13.4002 2.30025 13.951 2.34055L21.9297 2.92436L21.3459 10.903C21.3056 11.4538 21.7194 11.933 22.2702 11.9733C22.8211 12.0136 23.3003 11.5998 23.3406 11.049L23.9973 2.07298ZM1 21L1.65362 21.7568L23.6536 2.75682L23 2L22.3464 1.24318L0.34638 20.2432L1 21Z" />
+                                </svg>
+                            </span>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+    <section id="process" class="process" aria-labelledby="process-heading">
+        <div class="process__wrapper container">
+            <div class="process__intro">
+                <div class="badge">process</div>
+                <h2 id="process-heading" class="process__heading">
+                    Simple legal <span class="colored-text">process</span>
+                </h2>
+                <p class="process__description">
+                    I follow a clear, structured approach to ensure each case is
+                    handled with precision, transparency, and care. From the
+                    initial consultation to final resolution, my process is
+                    designed to protect your interests and deliver confident
+                    legal outcomes.
+                </p>
+
+                <Button type="primary" title="Get a free quote" />
+            </div>
+            <div class="process__list">
+                {
+                    process.map((item, i) => {
+                        return (
+                            <div class="process__item">
+                                <div class="process__item-header">
+                                    <span class="process__item-count">
+                                        {i + 1}
+                                    </span>
+                                    <span
+                                        class="process__item-icon"
+                                        aria-hidden="true"
+                                    >
+                                        <Icon />
+                                    </span>
+                                </div>
+                                <div class="process__item-body">
+                                    <h3 class="process__item-title">
+                                        {item.title}
+                                    </h3>
+                                    <p class="process__item-description">
+                                        {item.description}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </section>
+    <section
+        id="testimonials"
+        class="testimonials"
+        aria-labelledby="testimonials-heading"
+    >
+        <div class="testimonials__wrapper container">
+            <div class="testimonials__intro">
+                <div class="testimonial__info">
+                    <span class="badge">testimonials</span>
+                    <h2 id="testimonials-heading" class="testimonial__heading">
+                        See what our clients are saying
+                    </h2>
+                </div>
+                <div class="testimonial__navtigation desktop">
+                    <SliderController name="testimonial" />
+                </div>
+            </div>
+            <div class="testimonials__content">
+                <div class="splide">
+                    <div class="splide__track">
+                        <div class="testimonials__list splide__list">
+                            {
+                                testimonials.map((item) => (
+                                    <article
+                                        class="testimonials-item splide__slide"
+                                        role="group"
+                                        aria-roledescription="slide"
+                                        aria-label={`Testimonial by ${item.name}`}
+                                    >
+                                        <div class="testimonials-item__media">
+                                            <Image
+                                                src={item.avatar}
+                                                alt={item.name}
+                                                width={item.avatar.width}
+                                            />
+                                        </div>
+                                        <div class="testimonials-item__content">
+                                            <div
+                                                class="testimonials-item__icon"
+                                                aria-hidden="true"
+                                            >
+                                                <Image
+                                                    src={QuoteIcon}
+                                                    alt=""
+                                                    role="none"
+                                                    width={QuoteIcon.width}
+                                                />
+                                            </div>
+                                            <div class="testimonials-item__review review">
+                                                <div class="review__platform">
+                                                    <Image
+                                                        src={
+                                                            item.platform ==
+                                                            "google"
+                                                                ? GoogleIcon
+                                                                : FbIcon
+                                                        }
+                                                        alt={item.platform}
+                                                        width="52"
+                                                    />
+                                                </div>
+                                                <div class="review__details">
+                                                    <div class="review__author">
+                                                        {item.name}
+                                                    </div>
+                                                    <div class="review__icon">
+                                                        {Array.from({
+                                                            length: Number(
+                                                                item.rating,
+                                                            ),
+                                                        }).map(() => (
+                                                            <Icon
+                                                                name="star-icon"
+                                                                src="abovethefold"
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <blockquote class="testimonials-item__feedback">
+                                                <p>{item.quote}</p>
+                                            </blockquote>
+                                            <div class="testimonials-item__author">
+                                                <h4 class="author-name">
+                                                    {item.name}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </article>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial__navtigation mobile">
+                <SliderController name="testimonial" />
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="faq" aria-labelledby="faq-heading">
+        <div class="faq__wrapper container">
+            <div class="faq__intro">
+                <div class="badge">FAQ's</div>
+                <h2 id="faq-heading" class="faq__heading">
+                    Got <span class="colored-text">questions?</span> Robert has answers
+                </h2>
+                <p class="faq__description">
+                    Our FAQ section is designed to answer common questions about
+                    our legal services, fees, confidentiality, and consultation
+                    process. We believe in transparency.
+                </p>
+                <Button type="primary" title="Get a free quote" />
+            </div>
+            <div class="faq__list">
+                {
+                    faq.map((faq, index) => (
+                        <div class="accordion-item">
+                            <h3 class="accordion-item__heading">
+                                <button
+                                    id={`accordion-button-${index}`}
+                                    class="accordion-item__button"
+                                    aria-expanded={
+                                        index === 0 ? "true" : "false"
+                                    }
+                                    aria-controls={`accordion-item__content-${index}`}
+                                >
+                                    <div class="accordion-item__header">
+                                        <span class="accordion-item__title">
+                                            {faq.question}
+                                        </span>
+                                        <span
+                                            class="accordion-item__icon"
+                                            aria-hidden="true"
+                                        >
+                                            <Icon name="plus-icon" />
+                                        </span>
+                                    </div>
+                                </button>
+                            </h3>
+                            <div
+                                id={`accordion-item__content-${index}`}
+                                class="accordion-item__content"
+                                aria-labelledby={`accordion-button-${index}`}
+                                role="region"
+                            >
+                                <p>{faq.answer}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="faq__cta">
+                <Button type="primary" title="Get a free quote" />
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="contact" aria-labelledby="contact-heading">
+        <div class="contact__wrapper container">
+            <div class="contact__intro">
+                <div class="contact__info">
+                    <span class="badge">contact</span>
+                    <h2 id="contact-heading" class="contact__heading">
+                        Let's discuss your legal matter
+                    </h2>
+                </div>
+
+                <div class="contact__media">
+                    <div class="contact__video">
+                        <a href="#about" class="video-btn hero__video">
+                            <div class="video-btn__icon">
+                                <Icon name="video-icon" />
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact__content">
+                <div class="contact__content-details">
+                    <h3 class="contact__content-details__heading">Contact</h3>
+                    <p class="contact__content-description">
+                        Have a legal question or need professional guidance?
+                        Contact me to schedule a consultation and receive clear,
+                        confidential legal advice tailored to your needs.
+                    </p>
+                    <a
+                        href="https://wa.me/8801834969563"
+                        class="contact__whatsapp"
+                    >
+                        <span class="contact__whatsapp-label"
+                            >Chat on WhatsApp</span
+                        >
+                        <span class="contact__whatsapp-number"
+                            >(+88) 01834 969563</span
+                        >
+                    </a>
+                </div>
+                <div class="contact-form__wrapper">
+                    <form action="#" class="contact-form" method="POST">
+                        <div class="contact-form__row">
+                            <div class="contact-form__group">
+                                <label
+                                    for="your-name"
+                                    class="contact-form__label">Your name</label
+                                >
+                                <input
+                                    type="text"
+                                    name="your_name"
+                                    id="your-name"
+                                    placeholder="Your name"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                            <div class="contact-form__group">
+                                <label
+                                    for="your-email"
+                                    class="contact-form__label"
+                                    >Your email</label
+                                >
+                                <input
+                                    type="email"
+                                    name="your_email"
+                                    id="your-email"
+                                    placeholder="Your email"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                        </div>
+                        <div class="contact-form__row">
+                            <div class="contact-form__group">
+                                <label
+                                    for="your-phone"
+                                    class="contact-form__label"
+                                    >Your phone number</label
+                                >
+                                <input
+                                    type="tel"
+                                    name="your_phone"
+                                    id="your-phone"
+                                    placeholder="Your phone numebr"
+                                />
+                            </div>
+                            <div class="contact-form__group">
+                                <label
+                                    for="service-type"
+                                    class="contact-form__label"
+                                    >Type of service</label
+                                >
+                                <select
+                                    name="service_type"
+                                    id="service-type"
+                                    required
+                                    aria-required="true"
+                                >
+                                    <option
+                                        value="Select a service"
+                                        disabled
+                                        selected>Select a service</option
+                                    >
+                                    <option value="criminal_defense"
+                                        >Criminal defense</option
+                                    >
+                                    <option value="family_law"
+                                        >Family law</option
+                                    >
+                                    <option value="personal_injury"
+                                        >Personal injury</option
+                                    >
+                                    <option value="business_and_corporate_law"
+                                        >Business & corporate law</option
+                                    >
+                                    <option value="real_estate_law"
+                                        >Real estate law</option
+                                    >
+                                    <option value="wills_and_estate_planning"
+                                        >Wills & estate planning</option
+                                    >
+                                </select>
+                            </div>
+                        </div>
+                        <div class="contact-form__row">
+                            <div class="contact-form__group">
+                                <label for="message" class="contact-form__label"
+                                    >Message</label
+                                >
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                    placeholder="Enter your message"
+                                    class="contact-form__textarea"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            class="form-button"
+                            aria-label="Request consultation"
+                        >
+                            <span class="btn__text">request consultation</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Fragment slot="bottom-style">
+        <link
+            rel="stylesheet"
+            href={underTheFold}
+            media="print"
+            onload="this.media='all'"
+        />
+        <link
+            rel="stylesheet"
+            href={splideCssUrl}
+            media="print"
+            onload="this.media='all'"
+        />
+        <noscript>
+            <link rel="stylesheet" href={underTheFold} />
+            <link rel="stylesheet" href={splideCssUrl} />
+        </noscript>
+    </Fragment>
+</Layout>

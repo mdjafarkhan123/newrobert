@@ -1,0 +1,113 @@
+@use "/src/styles/utils" as *;
+.badge {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    background-color: var(--color-white);
+    text-transform: uppercase;
+    font-size: var(--fs-xsm);
+    padding: 0.8rem 2rem 0.8rem 2.5rem;
+    margin-bottom: var(--space-xsm);
+    border: 1px solid var(--color-primary);
+    overflow: hidden;
+    border-radius: var(--round-md);
+    transition: var(--transition);
+    z-index: 1;
+}
+.slider-controls {
+    display: inline-flex;
+    gap: var(--space-2xsm);
+    &__btn {
+        display: inline-flex;
+        width: 56px;
+        height: 56px;
+        color: var(--color-heading-dark);
+        background-color: transparent;
+        padding: 0;
+        border: 1px solid var(--color-border);
+        border-radius: 100vmax;
+        transition: var(--transition);
+        &:hover {
+            color: var(--color-white);
+            background-color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        .btn__icon {
+            width: 100%;
+            line-height: 0;
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+.colored-text {
+    color: var(--color-accent);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    position: absolute;
+    background-color: var(--color-primary);
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 100px;
+    height: 120px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-border);
+}
+
+/* ===== Font Sizes (with mobile-first responsive scaling) ===== */
+.text-large {
+    font-size: var(--fs-lg); /* 20px base (mobile) */
+}
+
+.text-body {
+    font-size: var(--fs-md); /* 16px base (mobile) */
+}
+
+/* ===== Font Weights (Composable) ===== */
+.font-normal {
+    font-weight: 400;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+/*======== About section ==========*/
+.about {
+    padding-block: var(--space-fluid-2xl);
+    &__intro {
+        text-align: center;
+    }
+}
+
+.header__menu-toggler[aria-expanded="true"] .line:nth-of-type(2),
+footer,
+header,
+section {
+    overflow: hidden;
+    opacity: 1;
+}
+
+//=============== Large device design ============//
+@include respond-to("tablet") {
+    .about {
+        background-color: red;
+    }
+}

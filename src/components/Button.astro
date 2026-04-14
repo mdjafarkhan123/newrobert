@@ -1,0 +1,18 @@
+---
+import Icon from "./Svg.astro";
+const { title, type, id } = Astro.props;
+---
+
+<a
+    id={id}
+    href="#"
+    class=`btn btn--${type} magnetic-button`
+    role="button"
+    aria-label={title}
+>
+    <span class="btn__text text">{title}</span>
+    <span class="btn__icon" aria-hidden="true">
+        <Icon name="arrow-button" src="abovethefold" />
+    </span>
+    <span class="btn__bg"></span>
+</a>
