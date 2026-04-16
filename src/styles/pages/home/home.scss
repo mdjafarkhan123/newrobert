@@ -49,6 +49,9 @@
     color: var(--color-accent);
 }
 
+.section-radius {
+    border-radius: var(--round-lg);
+}
 ::-webkit-scrollbar {
     width: 4px;
 }
@@ -73,11 +76,11 @@
 
 /* ===== Font Sizes (with mobile-first responsive scaling) ===== */
 .text-large {
-    font-size: var(--fs-lg); /* 20px base (mobile) */
+    font-size: var(--fs-md); /* 20px base (mobile) */
 }
 
 .text-body {
-    font-size: var(--fs-md); /* 16px base (mobile) */
+    font-size: var(--fs-base); /* 16px base (mobile) */
 }
 
 /* ===== Font Weights (Composable) ===== */
@@ -89,25 +92,440 @@
     font-weight: 600;
 }
 
+.lines-2 {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lines-3 {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inverse {
+    background-color: var(--color-primary);
+}
 /*======== About section ==========*/
 .about {
     padding-block: var(--space-fluid-2xl);
     &__intro {
         text-align: center;
     }
+    .about__details {
+        .about__description {
+            text-align: center;
+            &--lg {
+                display: inline-block;
+                font-size: var(--fs-lg);
+                margin-bottom: var(--space-sm);
+            }
+        }
+        .btn {
+            margin-top: var(--space-lg);
+        }
+    }
 }
 
+.services {
+    background-color: var(--color-primary);
+    padding-block: var(--space-fluid-2xl);
+    &__slider-nav {
+        display: none;
+    }
+    .services__header {
+        text-align: center;
+        color: var(--color-text-white);
+        gap: var(--space-md);
+        &-intro {
+            .services__heading {
+                color: var(--color-heading-white);
+            }
+        }
+    }
+    .services__list--mobile {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: var(--space-lg);
+    }
+    & &__list--desktop {
+        display: none;
+    }
+    &-item {
+        background-color: var(--color-white);
+        padding: var(--space-lg) var(--space-sm);
+        border-radius: var(--round-md);
+        gap: var(--space-sm);
+        &__title {
+            max-width: 317px;
+        }
+        &__media {
+            border-radius: var(--round-sm);
+            margin-bottom: var(--space-md);
+            overflow: hidden;
+        }
+        .services-item__content {
+            align-items: flex-end;
+            gap: var(--space-xsm);
+
+            a {
+                --size: 56px;
+                display: inline-flex;
+                width: var(--size);
+                height: var(--size);
+                color: var(--color-accent);
+                flex-shrink: 0;
+                justify-content: center;
+                border: 1px solid var(--color-tertiary);
+                border-radius: 100px;
+            }
+        }
+
+        .services__category {
+            padding-inline: var(--space-sm);
+        }
+    }
+}
+
+.projects {
+    padding-block: var(--space-fluid-2xl);
+    .projects__content {
+        text-align: center;
+
+        gap: var(--space-md);
+    }
+    &__details {
+        text-align: center;
+        .btn {
+            display: none;
+        }
+    }
+
+    &__tile-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        .projects-item {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 300px;
+            &__image-wrapper {
+                border-radius: 20px;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    aspect-ratio: 16 / 7;
+                    object-fit: cover;
+                }
+            }
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding-block: 10px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid var(--color-border);
+                gap: var(--space-sm);
+                .projects-item__icon {
+                    --size: 56px;
+                    display: inline-flex;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    width: var(--size);
+                    height: var(--size);
+                    color: var(--color-accent);
+                    border: 1px solid var(--color-tertiary);
+                    border-radius: 100px;
+                }
+            }
+        }
+    }
+    &__grid-list {
+        display: none;
+    }
+}
+
+.process {
+    padding-block: var(--space-fluid-2xl);
+    &__intro {
+        text-align: center;
+        color: var(--color-text-white);
+        .process__heading {
+            color: var(--color-heading-white);
+            margin-bottom: var(--space-sm);
+        }
+        .process__description {
+            margin-bottom: var(--space-lg);
+        }
+        &-cta {
+            display: none;
+        }
+    }
+    &__content {
+        position: relative;
+        gap: var(--space-xl);
+        &-bg {
+            display: none;
+        }
+    }
+    .process__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: var(--space-md);
+        .process__item {
+            flex: 1 1 180px; /* Grow, Shrink, Basis */
+            max-width: 300px;
+            padding: var(--space-sm);
+            background-color: var(--color-white);
+            border-radius: var(--round-md);
+            justify-content: space-between;
+            gap: var(--space-fluid-lg);
+            &-count {
+                color: var(--color-heading-dark);
+                font-weight: 600;
+                font-size: var(--fs-fluid-md);
+            }
+            &-icon {
+                --size: 52px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: var(--size);
+                height: var(--size);
+                flex-shrink: 0;
+                color: var(--color-accent);
+                border-radius: 100px;
+                border: 1px solid var(--color-border);
+                svg {
+                    flex-shrink: 0;
+                    width: 28px;
+                }
+            }
+            &-header {
+                justify-content: space-between;
+            }
+        }
+    }
+}
+//=============== Large device design ============//
+
+/*-------- Mobile LG ------------*/
+@include respond-to("mobile-lg") {
+}
+
+/*-------- Mobile XL ------------*/
+@include respond-to("mobile-xl") {
+    .section-radius {
+        border-radius: var(--round-xl);
+    }
+    .services {
+        &__slicer-nav {
+            display: block;
+        }
+
+        & &__list--mobile {
+            display: none;
+        }
+
+        .services__list.services__list--desktop.splide__list {
+            display: flex;
+        }
+    }
+}
+
+/*-------- Tablet ------------*/
+@include respond-to("tablet") {
+    .about {
+        &__wrapper {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        & &__intro,
+        & &__details,
+        & &__details p.about__description {
+            text-align: left;
+            align-items: flex-start;
+        }
+        &__intro {
+            max-width: 440px;
+        }
+        &__details {
+            max-width: 790px;
+        }
+    }
+
+    .services {
+        &__header {
+            text-align: left;
+            flex-direction: row;
+            justify-content: space-between;
+            &-intro {
+                align-items: flex-start;
+                text-align: left;
+                flex-shrink: 0;
+                max-width: 350px;
+            }
+            &-body {
+                max-width: 504px;
+                text-align: left;
+                .services__description {
+                    margin-bottom: var(--space-lg);
+                }
+                .services__slider-nav {
+                    display: inline-flex;
+                }
+            }
+        }
+    }
+
+    .projects {
+        &__content {
+            text-align: left;
+            flex-direction: row;
+            justify-content: space-between;
+            .projects__intro {
+                align-items: flex-start;
+                text-align: left;
+                flex-shrink: 0;
+                max-width: 380px;
+            }
+            .projects__details {
+                max-width: 510px;
+                text-align: left;
+                .projects__description {
+                    margin-bottom: var(--space-md);
+                }
+                .btn {
+                    display: inline-flex;
+                }
+            }
+        }
+    }
+}
+/*-------- Laptop ------------*/
+@include respond-to("laptop") {
+    .section-radius {
+        border-radius: var(--round-2xl);
+    }
+    .text-large {
+        font-size: var(--fs-lg);
+    }
+    .text-body {
+        font-size: var(--fs-md);
+    }
+
+    .projects {
+        &__tile-list {
+            display: none;
+        }
+        &__grid-list {
+            display: block;
+            &__header {
+                display: flex;
+                font-size: var(--fs-xl);
+                font-weight: 600;
+                text-transform: uppercase;
+                color: var(--color-heading-dark);
+                border-bottom: 1px solid var(--color-border);
+                padding-block: var(--space-lg);
+                margin-bottom: var(--space-md);
+                gap: var(--space-3xl);
+                .titles {
+                    width: 100%;
+                    max-width: clamp(40rem, 16.154rem + 24.038vw, 45rem);
+                }
+
+                .categories {
+                    width: 100%;
+                    max-width: 220px;
+                }
+            }
+        }
+
+        &__grid-list {
+            display: block;
+            .projects-item {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-block: var(--space-xl);
+                gap: var(--space-3xl);
+                &:nth-of-type(1) {
+                    padding-top: 0;
+                }
+                &:nth-last-of-type(1) {
+                    padding-bottom: 0;
+                }
+                &:not(:nth-last-of-type(1)) {
+                    border-bottom: 1px solid var(--color-border);
+                }
+                &__icon {
+                    --size: 64px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: var(--size);
+                    height: var(--size);
+                    border-radius: 100px;
+                    background-color: transparent;
+                    transition: var(--transition);
+                    svg {
+                        width: 32px;
+                    }
+                }
+                &:hover {
+                    .projects-item__icon {
+                        background-color: var(--color-primary);
+                        color: var(--color-white);
+                        transform: scale(1.2);
+                    }
+                }
+
+                &__title {
+                    width: 100%;
+                    max-width: clamp(40rem, 16.154rem + 24.038vw, 45rem);
+                }
+
+                &__description {
+                    width: 55%;
+                }
+                &__category {
+                    width: 100%;
+                    max-width: 220px;
+                    margin: 0;
+                    line-height: 1;
+                    .badge.category {
+                        margin-bottom: 0;
+                    }
+                }
+                &__date {
+                    color: var(--color-heading-dark);
+                    font-weight: 600;
+                    font-size: var(--fs-xl);
+                    flex-grow: 1;
+                }
+
+                // &__icon {
+                //     width: fit-content;
+                // }
+            }
+        }
+    }
+}
+
+//=========== Final part ===========//
 .header__menu-toggler[aria-expanded="true"] .line:nth-of-type(2),
 footer,
 header,
 section {
     overflow: hidden;
     opacity: 1;
-}
-
-//=============== Large device design ============//
-@include respond-to("tablet") {
-    .about {
-        background-color: red;
-    }
 }

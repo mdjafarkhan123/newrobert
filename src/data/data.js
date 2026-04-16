@@ -75,25 +75,41 @@ export const services = [
 ];
 export const projects = [
     {
-        date: "21 september 2025",
-        category: "Personal law injury",
-        title: "Successful personal injury claim injury resolution",
+        date: "NOV 25",
+        category: "Corporate Law",
+        title: "Corporate advisory",
         description:
             "The client was involved in a personal injury incident that resulted in medical expenses, lost income, and ongoing physical discomfort. They sought legal representation to understand their rights and pursue fair compensation.",
         thumbnail: caseOneImg,
     },
     {
-        date: "17 August 2024",
-        category: "Personal law injury",
-        title: "Comprehensive workplace liability settlement",
+        date: "JUL 24",
+        category: "Real Estate Law",
+        title: "Property dispute",
         description:
             "After a construction site accident caused by faulty equipment, the client faced significant rehabilitation costs. We successfully navigated the complexities of labor laws to hold the negligent parties accountable and secured a settlement covering all future care.",
         thumbnail: caseOneImg,
     },
     {
-        date: "05 January 2026",
-        category: "Personal law injury",
-        title: "Strategic defense in multi-vehicle collision",
+        date: "JAN 26",
+        category: "Criminal law",
+        title: "Criminal defense",
+        description:
+            "Our client was wrongfully blamed for a major highway accident. Through meticulous investigation and expert testimony, we cleared their name and successfully counter-sued for the full repair costs and emotional distress suffered during the trial.",
+        thumbnail: caseOneImg,
+    },
+    {
+        date: "MAY 20",
+        category: "family law",
+        title: "Family settlement",
+        description:
+            "Our client was wrongfully blamed for a major highway accident. Through meticulous investigation and expert testimony, we cleared their name and successfully counter-sued for the full repair costs and emotional distress suffered during the trial.",
+        thumbnail: caseOneImg,
+    },
+    {
+        date: "APRIL 02",
+        category: "Business law",
+        title: "Contract review",
         description:
             "Our client was wrongfully blamed for a major highway accident. Through meticulous investigation and expert testimony, we cleared their name and successfully counter-sued for the full repair costs and emotional distress suffered during the trial.",
         thumbnail: caseOneImg,
@@ -123,7 +139,7 @@ export const process = [
         title: "Resolution",
         description:
             "Focused efforts to achieve the best possible outcome for your case",
-        icon: "recover-icon",
+        icon: "handshake-icon",
     },
 ];
 

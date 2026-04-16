@@ -209,11 +209,11 @@ hr {
 .container {
     display: flex;
     flex-flow: column;
-    max-width: 1260px;
+    max-width: 1366px;
     padding-inline: var(--space-sm);
     width: 100%;
     margin-inline: auto;
-    gap: 20px;
+    gap: var(--space-fluid-lg);
 }
 
 .btn {

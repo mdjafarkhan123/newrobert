@@ -213,9 +213,9 @@ import {
                     times
                 </h2>
             </div>
-            <div class="about__details">
-                <p class="about__description">
-                    <strong
+            <div class="about__details flex-center-y flex-column">
+                <p class="about__description text-body">
+                    <strong class="about__description--lg"
                         >With 20 years of legal experience, I’m committed to
                         helping individuals and families navigate the legal
                         system with clarity and confidence.
@@ -229,39 +229,61 @@ import {
             </div>
         </div>
     </section>
-    <section id="services" class="services" aria-labelledby="services-heading">
+    <section
+        id="services"
+        class="services section-radius inverse"
+        aria-labelledby="services-heading"
+    >
         <div class="services__wrapper container">
-            <div class="services__header slide-up">
-                <div class="services__header-intro">
+            <div class="services__header slide-up flex-column">
+                <div class="services__header-intro flex-column flex-center-y">
                     <div class="badge">Practice area</div>
                     <h2 id="sevices-heading" class="services__heading">
-                        Legal <span class="colored-text">services</span> you can trust
+                        Trusted <div class="colored-text">expertise</div>
                     </h2>
                 </div>
                 <div class="services__header-body">
-                    <div class="services__description">
+                    <div class="services__description text-body">
                         Robert works closely with clients, providing clear,
                         practical legal solutions with trust and transparency.
                     </div>
-                    <SliderController />
+                    <div class="services__slider-nav">
+                        <SliderController />
+                    </div>
                 </div>
             </div>
             <div class="services__list services__list--mobile">
                 {
                     services.map((item, index) => (
-                        <div class="services__item">
-                            <div class="services__media">
-                                <Image
-                                    src={item.thumbnail}
-                                    alt={item.title}
-                                    width={item.thumbnail.width}
-                                />
+                        <div class="services-item flex-column">
+                            <div class="services-item__header">
+                                <div class="services__category badge">
+                                    {item.category}
+                                </div>
+                                <h3 class="services-item__title">
+                                    {item.title}
+                                </h3>
                             </div>
-                            <div class="services__content">
-                                <h3 class="services__title">{item.title}</h3>
-                                <p class="services__description">
-                                    {item.description}
-                                </p>
+                            <div class="services-item__body">
+                                <div class="services-item__media">
+                                    <Image
+                                        src={item.thumbnail}
+                                        alt={item.title}
+                                        width={item.thumbnail.width}
+                                    />
+                                </div>
+                                <div class="services-item__content flex-row">
+                                    <p class="services-item__description">
+                                        {item.description}
+                                    </p>
+                                    <a
+                                        class="services-item__cta"
+                                        href="#"
+                                        aria-label="View service"
+                                    >
+                                        <Icon name="arrow-right-up" />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     ))
@@ -274,21 +296,35 @@ import {
                     >
                         {
                             services.map((item, index) => (
-                                <div class="services__item splide__slide">
-                                    <div class="services__media">
-                                        <Image
-                                            src={item.thumbnail}
-                                            alt={item.title}
-                                            width={item.thumbnail.width}
-                                        />
-                                    </div>
-                                    <div class="services__content">
-                                        <h3 class="services__title">
+                                <div class="services-item flex-column splide__slide">
+                                    <div class="services-item__header">
+                                        <div class="services__category badge">
+                                            {item.category}
+                                        </div>
+                                        <h3 class="services-item__title">
                                             {item.title}
                                         </h3>
-                                        <p class="services__description">
-                                            {item.description}
-                                        </p>
+                                    </div>
+                                    <div class="services-item__body">
+                                        <div class="services-item__media">
+                                            <Image
+                                                src={item.thumbnail}
+                                                alt={item.title}
+                                                width={item.thumbnail.width}
+                                            />
+                                        </div>
+                                        <div class="services-item__content flex-row">
+                                            <p class="services-item__description">
+                                                {item.description}
+                                            </p>
+                                            <a
+                                                class="services-item__cta"
+                                                href="#"
+                                                aria-label="View service"
+                                            >
+                                                <Icon name="arrow-right-up" />
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             ))
@@ -296,61 +332,50 @@ import {
                     </div>
                 </div>
             </div>
-            <div class="services__cta slide-up">
-                <Button type="primary" title="Start your case" />
-            </div>
         </div>
     </section>
     <section id="projects" class="projects" aria-labelledby="projects-heading">
         <div class="projects__wrapper container">
-            <div class="projects__content">
-                <div class="projects__intro">
+            <div class="projects__content flex-column">
+                <div class="projects__intro flex-column flex-center-y">
                     <div class="badge">My projects</div>
                     <h2 id="projects-heading" class="projects__heading">
                         Some of my legal <span class="colored-text">works</span>
                     </h2>
                 </div>
                 <div class="projects__details">
-                    <p class="projects__description">
+                    <p class="projects__description text-body">
                         Explore a selection of cases and legal matters we’ve
                         successfully handled across different practice areas.
                     </p>
                     <Button title="See all works" type="primary" />
                 </div>
             </div>
-            <div class="service__tile-list">
+            <div class="projects__tile-list mobile">
                 {
                     projects.map((project) => {
                         return (
-                            <article class="service-item">
-                                <div class="service-item__image-wrapper">
+                            <article class="projects-item">
+                                <div class="projects-item__image-wrapper">
                                     <Image
-                                        class="service-item__image"
+                                        class="projects-item__image"
                                         alt={project.title}
                                         src={project.thumbnail}
                                     />
                                 </div>
-                                <div class="service-item__content">
-                                    <div class="service-item__header">
-                                        <h3 class="service-item__title">
+                                <div class="projects-item__content">
+                                    <div class="projects-item__header">
+                                        <h3 class="projects-item__title">
                                             {project.title}
                                         </h3>
                                         <span
-                                            class="service-item__icon"
+                                            class="projects-item__icon"
                                             aria-hidden="true"
                                         >
-                                            <svg
-                                                width="24"
-                                                height="22"
-                                                viewBox="0 0 24 22"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path d="M23.9973 2.07298C24.0376 1.52216 23.6238 1.04297 23.073 1.00267L14.097 0.345886C13.5462 0.305583 13.067 0.719432 13.0267 1.27024C12.9864 1.82106 13.4002 2.30025 13.951 2.34055L21.9297 2.92436L21.3459 10.903C21.3056 11.4538 21.7194 11.933 22.2702 11.9733C22.8211 12.0136 23.3003 11.5998 23.3406 11.049L23.9973 2.07298ZM1 21L1.65362 21.7568L23.6536 2.75682L23 2L22.3464 1.24318L0.34638 20.2432L1 21Z" />
-                                            </svg>
+                                            <Icon name="arrow-right-up" />
                                         </span>
                                     </div>
-                                    <p class="service-item__description">
+                                    <p class="projects-item__description lines-2">
                                         {project.description}
                                     </p>
                                 </div>
@@ -359,80 +384,100 @@ import {
                     })
                 }
             </div>
-            <div class="service__grid-list">
-                <div class="service-preview"></div>
-                {
-                    projects.map((project, index) => (
-                        <article
-                            class="service-item"
-                            data-image={project.thumbnail.src}
-                        >
-                            <h3 class="service-item__title">{project.title}</h3>
-                            <p class="service-item__description">
-                                {project.description}
-                            </p>
-                            <span class="service-item__icon" aria-hidden="true">
-                                <svg
-                                    width="24"
-                                    height="22"
-                                    viewBox="0 0 24 22"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+            <div class="projects__grid-list desktop">
+                <div class="projects__grid-list__header">
+                    <div class="titles">Titles</div>
+                    <div class="categories">Categories</div>
+                    <div class="date">Date</div>
+                </div>
+                <div class="projects__grid-list__body">
+                    {
+                        projects.map((project, index) => (
+                            <article
+                                class="projects-item"
+                                data-image={project.thumbnail.src}
+                            >
+                                <h3 class="projects-item__title">
+                                    {project.title}
+                                </h3>
+                                <div class="projects-item__category">
+                                    <div class="badge category">
+                                        {project.category}
+                                    </div>
+                                </div>
+                                <div class="projects-item__date">
+                                    {project.date}
+                                </div>
+                                <span
+                                    class="projects-item__icon"
+                                    aria-hidden="true"
                                 >
-                                    <path d="M23.9973 2.07298C24.0376 1.52216 23.6238 1.04297 23.073 1.00267L14.097 0.345886C13.5462 0.305583 13.067 0.719432 13.0267 1.27024C12.9864 1.82106 13.4002 2.30025 13.951 2.34055L21.9297 2.92436L21.3459 10.903C21.3056 11.4538 21.7194 11.933 22.2702 11.9733C22.8211 12.0136 23.3003 11.5998 23.3406 11.049L23.9973 2.07298ZM1 21L1.65362 21.7568L23.6536 2.75682L23 2L22.3464 1.24318L0.34638 20.2432L1 21Z" />
-                                </svg>
-                            </span>
-                        </article>
-                    ))
-                }
+                                    <Icon name="arrow-right-up" />
+                                </span>
+                            </article>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </section>
-    <section id="process" class="process" aria-labelledby="process-heading">
+    <section
+        id="process"
+        class="process section-radius inverse"
+        aria-labelledby="process-heading"
+    >
         <div class="process__wrapper container">
             <div class="process__intro">
                 <div class="badge">process</div>
                 <h2 id="process-heading" class="process__heading">
                     Simple legal <span class="colored-text">process</span>
                 </h2>
-                <p class="process__description">
+                <p class="process__description text-body">
                     I follow a clear, structured approach to ensure each case is
                     handled with precision, transparency, and care. From the
                     initial consultation to final resolution, my process is
                     designed to protect your interests and deliver confident
                     legal outcomes.
                 </p>
-
-                <Button type="primary" title="Get a free quote" />
+                <div class="process__intro-cta">
+                    <Button type="primary" title="Get a free quote" />
+                </div>
             </div>
-            <div class="process__list">
-                {
-                    process.map((item, i) => {
-                        return (
-                            <div class="process__item">
-                                <div class="process__item-header">
-                                    <span class="process__item-count">
-                                        {i + 1}
-                                    </span>
-                                    <span
-                                        class="process__item-icon"
-                                        aria-hidden="true"
-                                    >
-                                        <Icon />
-                                    </span>
+            <div class="process__content flex-column flex-center-y">
+                <div class="process__content-bg">
+                    <svg class="icon">
+                        <use xlink:href="/sprite.svg#process-bg"></use>
+                    </svg>
+                </div>
+                <div class="process__list">
+                    {
+                        process.map((item, i) => {
+                            return (
+                                <div class="process__item flex-column">
+                                    <div class="process__item-header flex-row">
+                                        <span class="process__item-count">
+                                            0{i + 1}
+                                        </span>
+                                        <span
+                                            class="process__item-icon"
+                                            aria-hidden="true"
+                                        >
+                                            <Icon name={item.icon} />
+                                        </span>
+                                    </div>
+                                    <div class="process__item-body">
+                                        <h3 class="process__item-title">
+                                            {item.title}
+                                        </h3>
+                                    </div>
                                 </div>
-                                <div class="process__item-body">
-                                    <h3 class="process__item-title">
-                                        {item.title}
-                                    </h3>
-                                    <p class="process__item-description">
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </div>
-                        );
-                    })
-                }
+                            );
+                        })
+                    }
+                </div>
+                <div class="process__content-cta">
+                    <Button type="primary" title="Get a free quote" />
+                </div>
             </div>
         </div>
     </section>
@@ -536,14 +581,18 @@ import {
             </div>
         </div>
     </section>
-    <section id="faq" class="faq" aria-labelledby="faq-heading">
+    <section
+        id="faq"
+        class="faq section-radius inverse"
+        aria-labelledby="faq-heading"
+    >
         <div class="faq__wrapper container">
             <div class="faq__intro">
                 <div class="badge">FAQ's</div>
                 <h2 id="faq-heading" class="faq__heading">
                     Got <span class="colored-text">questions?</span> Robert has answers
                 </h2>
-                <p class="faq__description">
+                <p class="faq__description text-body">
                     Our FAQ section is designed to answer common questions about
                     our legal services, fees, confidentiality, and consultation
                     process. We believe in transparency.
@@ -616,7 +665,7 @@ import {
             <div class="contact__content">
                 <div class="contact__content-details">
                     <h3 class="contact__content-details__heading">Contact</h3>
-                    <p class="contact__content-description">
+                    <p class="contact__content-description text-body">
                         Have a legal question or need professional guidance?
                         Contact me to schedule a consultation and receive clear,
                         confidential legal advice tailored to your needs.

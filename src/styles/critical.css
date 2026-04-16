@@ -193,7 +193,8 @@ h2 {
     font-size: var(--fs-fluid-lg);
 }
 h3 {
-    font-size: var(--fs-fluid-md);
+    font-size: clamp(2.4rem, 1.92rem + 1.067vw, 3.2rem);
+    line-height: 1.2;
 }
 h4 {
     font-size: var(--fs-xl);
@@ -612,7 +613,7 @@ ul.hero__stats.stats {
         height: 70px;
     }
     .header .glass-card {
-        left: clamp(16rem, -30.604rem + 46.98vw, 30rem);
+        left: clamp(16rem, -30.604rem + 46.98vw, 36rem);
         max-width: 565px;
     }
     .header__nav {
