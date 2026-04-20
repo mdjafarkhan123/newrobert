@@ -118,7 +118,7 @@ export const projects = [
 
 export const process = [
     {
-        title: "Initial consultation",
+        title: "Corporate advisory",
         description:
             "Discuss your situation, concerns, and legal goals in a confidential setting.",
         icon: "consultation-icon",
@@ -136,7 +136,7 @@ export const process = [
         icon: "legal-actions",
     },
     {
-        title: "Resolution",
+        title: "Case Resolution",
         description:
             "Focused efforts to achieve the best possible outcome for your case",
         icon: "handshake-icon",

@@ -16,7 +16,13 @@ import serviceOneImg from "../assets/images/service-1.jpg";
 import QuoteIcon from "../assets/images/quote.avif";
 import GoogleIcon from "../assets/images/google.avif";
 import FbIcon from "../assets/images/facebook.avif";
+import ProcessImg from "../assets/images/process.jpg";
 
+const ProcessAvif = await getImage({
+    src: ProcessImg,
+    width: ProcessImg.width,
+    format: "avif",
+});
 const Robertwebp = await getImage({
     src: Robert,
     width: 450,
@@ -108,7 +114,9 @@ import {
                             SRA Regulated: 01993456
                         </div>
                     </div>
-                    <div class="hero__review review-box flex-center-x">
+                    <div
+                        class="hero__review review-box review-box--light flex-center-x"
+                    >
                         <div class="glass-card"></div>
                         <div class="review-box__header rating-card">
                             <div class="review-box__avatars rating-card__media">
@@ -423,8 +431,9 @@ import {
     </section>
     <section
         id="process"
-        class="process section-radius inverse"
+        class="process section-radius inverse lazy-bg"
         aria-labelledby="process-heading"
+        data-bg={ProcessAvif.src}
     >
         <div class="process__wrapper container">
             <div class="process__intro">
@@ -453,22 +462,24 @@ import {
                     {
                         process.map((item, i) => {
                             return (
-                                <div class="process__item flex-column">
-                                    <div class="process__item-header flex-row">
-                                        <span class="process__item-count">
-                                            0{i + 1}
-                                        </span>
-                                        <span
-                                            class="process__item-icon"
-                                            aria-hidden="true"
-                                        >
-                                            <Icon name={item.icon} />
-                                        </span>
-                                    </div>
-                                    <div class="process__item-body">
-                                        <h3 class="process__item-title">
-                                            {item.title}
-                                        </h3>
+                                <div class="process-item__wrapper">
+                                    <div class="process__item flex-column">
+                                        <div class="process__item-header flex-row">
+                                            <span class="process__item-count">
+                                                0{i + 1}
+                                            </span>
+                                            <span
+                                                class="process__item-icon"
+                                                aria-hidden="true"
+                                            >
+                                                <Icon name={item.icon} />
+                                            </span>
+                                        </div>
+                                        <div class="process__item-body">
+                                            <h3 class="process__item-title">
+                                                {item.title}
+                                            </h3>
+                                        </div>
                                     </div>
                                 </div>
                             );
@@ -488,13 +499,13 @@ import {
     >
         <div class="testimonials__wrapper container">
             <div class="testimonials__intro">
-                <div class="testimonial__info">
+                <div class="testimonials__info">
                     <span class="badge">testimonials</span>
-                    <h2 id="testimonials-heading" class="testimonial__heading">
+                    <h2 id="testimonials-heading" class="testimonials__heading">
                         See what our clients are saying
                     </h2>
                 </div>
-                <div class="testimonial__navtigation desktop">
+                <div class="testimonials__navtigation desktop">
                     <SliderController name="testimonial" />
                 </div>
             </div>
@@ -517,7 +528,7 @@ import {
                                                 width={item.avatar.width}
                                             />
                                         </div>
-                                        <div class="testimonials-item__content">
+                                        <div class="testimonials-item__content flex-column">
                                             <div
                                                 class="testimonials-item__icon"
                                                 aria-hidden="true"
@@ -529,34 +540,40 @@ import {
                                                     width={QuoteIcon.width}
                                                 />
                                             </div>
-                                            <div class="testimonials-item__review review">
-                                                <div class="review__platform">
-                                                    <Image
-                                                        src={
-                                                            item.platform ==
-                                                            "google"
-                                                                ? GoogleIcon
-                                                                : FbIcon
-                                                        }
-                                                        alt={item.platform}
-                                                        width="52"
-                                                    />
-                                                </div>
-                                                <div class="review__details">
-                                                    <div class="review__author">
-                                                        {item.name}
+                                            <div class="testimonials-item__review review-box review-box--dark flex-center-x">
+                                                <div class="review-box__header rating-card">
+                                                    <div class="review-box__avatars rating-card__media">
+                                                        <Image
+                                                            width="52"
+                                                            src={
+                                                                item.platform ==
+                                                                "google"
+                                                                    ? GoogleIcon
+                                                                    : FbIcon
+                                                            }
+                                                            alt="Brand logo"
+                                                        />
                                                     </div>
-                                                    <div class="review__icon">
-                                                        {Array.from({
-                                                            length: Number(
-                                                                item.rating,
-                                                            ),
-                                                        }).map(() => (
-                                                            <Icon
-                                                                name="star-icon"
-                                                                src="abovethefold"
-                                                            />
-                                                        ))}
+                                                    <div class="review-box__content rating-card__body">
+                                                        <div class="review-box__rating rating-card__score">
+                                                            <div
+                                                                class="review-box__stars rating-card__stars"
+                                                                aria-hidden="true"
+                                                            >
+                                                                {Array.from({
+                                                                    length: 5,
+                                                                }).map(() => (
+                                                                    <Icon
+                                                                        className="rating-card__star"
+                                                                        name="star-icon"
+                                                                        src="abovethefold"
+                                                                    />
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-box__info rating-card__meta">
+                                                            {item.name}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -564,9 +581,9 @@ import {
                                                 <p>{item.quote}</p>
                                             </blockquote>
                                             <div class="testimonials-item__author">
-                                                <h4 class="author-name">
-                                                    {item.name}
-                                                </h4>
+                                                <span class="author-name">
+                                                    — {item.role}
+                                                </span>
                                             </div>
                                         </div>
                                     </article>
@@ -576,7 +593,7 @@ import {
                     </div>
                 </div>
             </div>
-            <div class="testimonial__navtigation mobile">
+            <div class="testimonials__navtigation mobile">
                 <SliderController name="testimonial" />
             </div>
         </div>
@@ -590,71 +607,72 @@ import {
             <div class="faq__intro">
                 <div class="badge">FAQ's</div>
                 <h2 id="faq-heading" class="faq__heading">
-                    Got <span class="colored-text">questions?</span> Robert has answers
+                    Answer to <span class="colored-text">questions.</span>
                 </h2>
                 <p class="faq__description text-body">
                     Our FAQ section is designed to answer common questions about
                     our legal services, fees, confidentiality, and consultation
-                    process. We believe in transparency.
+                    process.
                 </p>
-                <Button type="primary" title="Get a free quote" />
+
+                <div class="faq__cta">
+                    <Button type="primary" title="Get a free quote" />
+                </div>
             </div>
-            <div class="faq__list">
+
+            <div class="faq__list" role="list">
                 {
-                    faq.map((faq, index) => (
-                        <div class="accordion-item">
-                            <h3 class="accordion-item__heading">
+                    faq.map((item, i) => (
+                        <div
+                            class:list={["faq__item", { "is-open": i === 0 }]}
+                            role="listitem"
+                        >
+                            <h3 class="faq__item-heading">
                                 <button
-                                    id={`accordion-button-${index}`}
-                                    class="accordion-item__button"
-                                    aria-expanded={
-                                        index === 0 ? "true" : "false"
-                                    }
-                                    aria-controls={`accordion-item__content-${index}`}
+                                    class="faq__trigger"
+                                    aria-expanded={i === 0 ? "true" : "false"}
+                                    aria-controls={`faq-panel-${i}`}
                                 >
-                                    <div class="accordion-item__header">
-                                        <span class="accordion-item__title">
-                                            {faq.question}
-                                        </span>
-                                        <span
-                                            class="accordion-item__icon"
-                                            aria-hidden="true"
-                                        >
-                                            <Icon name="plus-icon" />
-                                        </span>
-                                    </div>
+                                    <span class="faq__question">
+                                        {item.question}
+                                    </span>
+                                    <span class="faq__icon" aria-hidden="true">
+                                        <Icon name="plus-icon" />
+                                    </span>
                                 </button>
                             </h3>
                             <div
-                                id={`accordion-item__content-${index}`}
-                                class="accordion-item__content"
-                                aria-labelledby={`accordion-button-${index}`}
+                                id={`faq-panel-${i}`}
+                                class="faq__panel"
                                 role="region"
                             >
-                                <p>{faq.answer}</p>
+                                <div class="faq__answer">
+                                    <p>{item.answer}</p>
+                                </div>
                             </div>
                         </div>
                     ))
                 }
             </div>
-            <div class="faq__cta">
+
+            <div class="faq__cta flex-center-x">
                 <Button type="primary" title="Get a free quote" />
             </div>
         </div>
     </section>
     <section id="contact" class="contact" aria-labelledby="contact-heading">
         <div class="contact__wrapper container">
-            <div class="contact__intro">
-                <div class="contact__info">
+            <div class="contact__header">
+                <div class="contact__header-info">
                     <span class="badge">contact</span>
                     <h2 id="contact-heading" class="contact__heading">
                         Let's discuss your legal matter
                     </h2>
                 </div>
 
-                <div class="contact__media">
+                <div class="contact__media lazy-bg">
                     <div class="contact__video">
-                        <a href="#about" class="video-btn hero__video">
+                        <a href="#about" class="video-btn contact__media-video">
                             <div class="video-btn__icon">
                                 <Icon name="video-icon" />
                             </div>
@@ -662,27 +680,23 @@ import {
                     </div>
                 </div>
             </div>
-            <div class="contact__content">
-                <div class="contact__content-details">
-                    <h3 class="contact__content-details__heading">Contact</h3>
-                    <p class="contact__content-description text-body">
+            <div class="contact__body">
+                <div class="contact__details">
+                    <h3 class="contact__subheading">Contact</h3>
+                    <p class="contact__description text-body">
                         Have a legal question or need professional guidance?
                         Contact me to schedule a consultation and receive clear,
                         confidential legal advice tailored to your needs.
                     </p>
-                    <a
-                        href="https://wa.me/8801834969563"
-                        class="contact__whatsapp"
-                    >
-                        <span class="contact__whatsapp-label"
-                            >Chat on WhatsApp</span
+                    <a href="https://wa.me/8801834969563" class="whatsapp-link">
+                        <span class="whatsapp-link__text">Chat on WhatsApp</span
                         >
-                        <span class="contact__whatsapp-number"
+                        <span class="whatsapp-link__number"
                             >(+88) 01834 969563</span
                         >
                     </a>
                 </div>
-                <div class="contact-form__wrapper">
+                <div class="contact__form-area">
                     <form action="#" class="contact-form" method="POST">
                         <div class="contact-form__row">
                             <div class="contact-form__group">

@@ -497,7 +497,7 @@ span.hero-badge__icon,
 .rating-card,
 .rating-card__score {
     display: flex;
-    color: var(--color-heading-white);
+    color: var(--color-heading-dark);
     align-items: center;
     font-size: var(--fs-sm);
     line-height: 1.2;
@@ -505,6 +505,10 @@ span.hero-badge__icon,
     gap: var(--space-2xsm);
 }
 
+.review-box--light .rating-card,
+.review-box--light .rating-card__score {
+    color: var(--color-heading-white);
+}
 .rating-card__media img {
     width: 96px;
 }

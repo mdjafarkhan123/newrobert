@@ -5,20 +5,28 @@
  */
 
 export function init() {
-    const buttons = document.querySelectorAll(".accordion-item__button");
+    const items = document.querySelectorAll(".faq__item");
+    if (!items.length) return;
 
-    if (!buttons.length) return;
+    items.forEach((item) => {
+        const trigger = item.querySelector(".faq__trigger");
 
-    buttons.forEach((btn) => {
-        btn.addEventListener("click", function () {
-            const isOpen = this.getAttribute("aria-expanded") === "true";
+        trigger.addEventListener("click", () => {
+            const isOpen = item.classList.contains("is-open");
 
-            // Collapse all
-            buttons.forEach((b) => b.setAttribute("aria-expanded", "false"));
+            // close all
+            items.forEach((i) => {
+                i.classList.remove("is-open");
+                i.querySelector(".faq__trigger").setAttribute(
+                    "aria-expanded",
+                    "false",
+                );
+            });
 
-            // If it was closed, open it
+            // toggle clicked
             if (!isOpen) {
-                this.setAttribute("aria-expanded", "true");
+                item.classList.add("is-open");
+                trigger.setAttribute("aria-expanded", "true");
             }
         });
     });

@@ -17,7 +17,8 @@ const CONFIG = {
         perMove: 1,
     },
     BREAKPOINTS: {
-        MOBILE: 640,
+        MOBILE: 480,
+        MOBILE_MD: 640,
         MOBILE_LG: 768,
     },
 };
@@ -30,7 +31,7 @@ export function init() {
         ...CONFIG.SPLIDE_TESTIMONIALS,
         breakpoints: {
             [CONFIG.BREAKPOINTS.MOBILE]: { perPage: 1 },
-            [CONFIG.BREAKPOINTS.MOBILE_LG]: { perPage: 2 },
+            [CONFIG.BREAKPOINTS.MOBILE_MD]: { perPage: 2 },
         },
     }).mount();
 
